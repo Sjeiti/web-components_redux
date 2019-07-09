@@ -4,7 +4,7 @@ dist
 temp
 
 *.bat
-*.swp
+*.sw*
 
 # local env files
 .env

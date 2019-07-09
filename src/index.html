@@ -1,27 +1,56 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Web components redux</title>
-    <meta charset="UTF-8" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap"
-      rel="stylesheet"
-    />
-    <link src="./style/screen.css"></link>
-  </head>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Web components redux</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <body>h1hdegghr
-    <!--
-    <div>
-      <span>red</span> 
-      <name-tag></name-tag>
-      <name-tag>Joep Bananaman</name-tag>
-    </div>
-    <bun-ny>Snuffie</bun-ny>
-    <bun-ny>Ke<span slot="nose">w</span>es</bun-ny>
-    <bun-ny><span slot="nose">*</span></bun-ny>
-		<bunny-food></bunny-food>
-	-->
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Six+Caps|Gloria+Hallelujah|Source+Code+Pro:200,400,600|Istok+Web:400,700,400italic,700italic|);
+/*
+    --fontNameHeading: 'Source Code Pro', monospace;
+    --fontNameBody: 'Istok Web', sans-serif;
+    --fontNameCode: 'Source Code Pro', monospace;
+*/
+    body {
+      margin: 0;
+      background-color: #f04;
+      /*font-family: var(--fontNameBody);*/
+    }
+    header {
+      position: sticky;
+      top: 1rem;
+      color: white;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+    header h1 { font-size: inherit; }
+    main {
+      padding: 1rem;
+      background-color: #fff;
+    }
+  </style>
+  <link
+    href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <link src="./style/screen.css"></link>
+</head>
+<body>
+  <header>
+    <h1>Ron Valstar - frontend developer</h1>
+    <nav>
+      <a href="#">about</a>
+      <a href="#">projects</a>
+      <a href="#">blog</a>
+      <a href="#">contact</a>
+    </nav>
+  </header>
+  <main>
     <add-todo></add-todo>
     <todo-list>
       <to-do>dingen leren</to-do>
@@ -31,6 +60,11 @@
     <hr />
     <todo-list />
 
-    <script src="./js/index.js"></script>
-  </body>
+    <h3>foo</h3>
+    <p>Consectetur consequuntur aliquam incidunt ad minima laudantium Blanditiis tempora porro doloremque rem ut Obcaecati repudiandae commodi voluptatum provident culpa Possimus temporibus cumque deleniti consequuntur ut adipisci eius, odio corporis Commodi</p>
+
+  </main>
+  <footer>foot</footer>
+  <script src="./js/index.js"></script>
+</body>
 </html>
