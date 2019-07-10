@@ -11,28 +11,81 @@
   
   <style>
     @import url(http://fonts.googleapis.com/css?family=Six+Caps|Gloria+Hallelujah|Source+Code+Pro:200,400,600|Istok+Web:400,700,400italic,700italic|);
-/*
-    --fontNameHeading: 'Source Code Pro', monospace;
-    --fontNameBody: 'Istok Web', sans-serif;
-    --fontNameCode: 'Source Code Pro', monospace;
-*/
+
+    :root {
+      --color-main: #f04;
+      --color-gray-light: #E7ECE9;
+      --font-name-heading: 'Source Code Pro', monospace;
+      --font-name-body: 'Istok Web', sans-serif;
+      --font-name-code: 'Source Code Pro', monospace;
+    }
+
+    html { box-sizing: border-box; }
+    *, *:before, *:after { box-sizing: inherit; }
+
+    html, body { margin: 0; }
+
     body {
       margin: 0;
-      background-color: #f04;
-      /*font-family: var(--fontNameBody);*/
+      background-color: var(--color-main);
+      font-family: var(--font-name-body);
     }
     header {
       position: sticky;
-      top: 1rem;
+      top: -4rem;
+      margin: 0;
+      padding: 1rem 0;
+      height: 5rem;
+      overflow: hidden;
       color: white;
       text-transform: uppercase;
       font-size: 0.75rem;
+      background-color: gray;
     }
-    header h1 { font-size: inherit; }
+    header h1 { 
+      margin: 0;
+      font-size: inherit; 
+    }
+    header nav {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      display: block;
+      transform: translateY(-50%);
+      white-space: nowrap;
+    }
+    header a {
+      text-decoration: none;
+      color: inherit;
+      background-color: var(--color-main);
+    }
     main {
-      padding: 1rem;
+      padding: 1rem 0;
       background-color: #fff;
     }
+    main>*{
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+
+pre {
+  overflow:auto;
+  background-color: #333;
+  box-shadow: 1rem 0 0 #333, -1rem 0 0 #333;
+  color: #eee;
+}
+
+code {
+ 
+}
+
+pre, code {
+  font-family: var(--font-name-code);
+  font-size: 1rem;
+  line-height: 180%;
+}
+
+
   </style>
   <link
     href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap"
@@ -51,6 +104,7 @@
     </nav>
   </header>
   <main>
+    <div>
     <add-todo></add-todo>
     <todo-list>
       <to-do>dingen leren</to-do>
@@ -59,10 +113,25 @@
     </todo-list>
     <hr />
     <todo-list />
+    </div>
 
     <h3>foo</h3>
     <p>Consectetur consequuntur aliquam incidunt ad minima laudantium Blanditiis tempora porro doloremque rem ut Obcaecati repudiandae commodi voluptatum provident culpa Possimus temporibus cumque deleniti consequuntur ut adipisci eius, odio corporis Commodi</p>
-
+    <p>Dolor earum autem iure sunt beatae facere Debitis veniam ipsam inventore itaque nostrum Laboriosam maxime ex iure ad vel? Sint magnam corrupti excepturi ipsa cumque hic, nemo deserunt! Dolorum suscipit?</p>
+    <pre><code data-language="javascript">
+function reorderFrom(arr, from) {  
+    const a1 = arr.slice(0, from).reverse()  
+    const a2 = arr.slice(from);  
+    const reordered = []  
+    for (let i = 0, l = Math.max(a1.length, a2.length); i &lt; l; i++) {  
+        const v2 = a2[i]  
+        v2 !== undefined && reordered.push(v2)  
+        const v1 = a1[i]  
+        v1 !== undefined && reordered.push(v1)  
+    }  
+    return reordered  
+}
+    </code></pre>
   </main>
   <footer>foot</footer>
   <script src="./js/index.js"></script>
