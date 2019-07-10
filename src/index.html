@@ -32,10 +32,11 @@
     }
     header {
       position: sticky;
-      top: -4rem;
+      top: -11rem;
+      height: 12rem;
+      display: block;
       margin: 0;
       padding: 1rem 0;
-      height: 5rem;
       overflow: hidden;
       color: white;
       text-transform: uppercase;
@@ -43,7 +44,11 @@
       background-color: gray;
     }
     header h1 { 
-      margin: 0;
+      position: relative;
+      left: 50%;
+      display: inline-block;
+      margin: 0 auto;
+      transform: translateX(-50%);
       font-size: inherit; 
     }
     header nav {
@@ -51,10 +56,12 @@
       left: 50%;
       bottom: 0;
       display: block;
-      transform: translateY(-50%);
+      transform: translateX(-50%);
       white-space: nowrap;
+      line-height: 1rem;
     }
-    header a {
+    header a, footer a {
+      padding: 0 0.5rem;
       text-decoration: none;
       color: inherit;
       background-color: var(--color-main);
@@ -68,10 +75,21 @@
       margin-right: 1rem;
     }
 
+    footer {
+      text-align: center;
+    }
+    footer .social span {
+      display: none;
+    }
+
+main>pre {
+  margin-left: 0;
+  margin-right: 0;
+}
 pre {
+  padding: 1rem;
   overflow:auto;
   background-color: #333;
-  box-shadow: 1rem 0 0 #333, -1rem 0 0 #333;
   color: #eee;
 }
 
@@ -81,7 +99,7 @@ code {
 
 pre, code {
   font-family: var(--font-name-code);
-  font-size: 1rem;
+  font-size: 0.75rem;
   line-height: 180%;
 }
 
@@ -101,6 +119,7 @@ pre, code {
       <a href="#">projects</a>
       <a href="#">blog</a>
       <a href="#">contact</a>
+      <a href="#">cv</a>
     </nav>
   </header>
   <main>
@@ -133,7 +152,16 @@ function reorderFrom(arr, from) {
 }
     </code></pre>
   </main>
-  <footer>foot</footer>
+  <footer>
+    <nav class="social">
+      <a href="#"><span>Stackoverflow</span></a>
+      <a href="#"><span>LinkedIn</span></a>
+      <a href="#"><span>Twitter</span></a>  
+      <a href="#"><span>Ello</span></a>
+    </nav>
+    <span></span>
+    &copy; Ron Valstar
+  </footer>
   <script src="./js/index.js"></script>
 </body>
 </html>
