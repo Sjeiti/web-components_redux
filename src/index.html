@@ -5,7 +5,7 @@
   <title>Web components redux</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="theme-color" content="#F04">
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   
@@ -14,6 +14,7 @@
 
     :root {
       --color-main: #f04;
+      --color-link: #3baeff;
       --color-gray-light: #E7ECE9;
       --font-name-heading: 'Source Code Pro', monospace;
       --font-name-body: 'Istok Web', sans-serif;
@@ -30,6 +31,9 @@
       background-color: var(--color-main);
       font-family: var(--font-name-body);
     }
+
+    a { color: var(--color-link); }
+
     header {
       position: sticky;
       top: -11rem;
@@ -42,7 +46,35 @@
       text-transform: uppercase;
       font-size: 0.75rem;
       background-color: gray;
+      background-image: url("data/header-bg-2.jpg");
+      background-size: cover;
     }
+
+    .logo {
+      font-size: 3px;
+      width: 6.7em;
+      height: 10.8em;
+    }
+    .logo:before, .logo:after {
+      content: '';
+      position: relative;
+      top: 1.4em;
+      left: 0.4em;
+      display: block;
+      width:5.6em;
+      height:2.8em;
+      background-color: #fff;
+      border-radius: 0 2.8em 0 2.8em;
+      transform: rotate(40deg) skewx(-3deg) skewy(-3deg);
+    }
+    .logo:after {
+      top: 2.9em;
+      left: -0.6em;
+      width:8em;
+      height:3.2em;
+      transform:rotate(46deg) skewx(-9deg) skewy(-9deg);
+    }
+
     header h1 { 
       position: relative;
       left: 50%;
@@ -50,18 +82,52 @@
       margin: 0 auto;
       transform: translateX(-50%);
       font-size: inherit; 
+      text-align: center;
     }
+    header h1 .logo { 
+      margin: 0 auto; 
+      font-size: 5px;
+    }
+    /*header h1 .logo:before, header h1 .logo:after {
+      background-image: url("data/header-bg-1.jpg");
+    }*/
+    header h1 .name { font-size: 3rem; }
+    header h1 .what { 
+      font-size: 1.25rem;
+      letter-spacing: 0.325rem;
+      font-weight: 600;
+    }
+
     header nav {
       position: absolute;
       left: 50%;
       bottom: 0;
-      display: block;
+      display: flex;
       transform: translateX(-50%);
       white-space: nowrap;
       line-height: 1rem;
     }
-    header a, footer a {
+    header nav a {
+      display: block;
+      height: 1rem;
+      margin: 0 0.125rem;
+    }
+    header nav a span {
+      font-size: 0.625rem;
       padding: 0 0.5rem;
+      line-height: 1.25rem;
+    }
+    header nav .logo {
+      position: absolute;
+      left: -1.5rem;
+      bottom: -0.125rem;
+      display: block;
+      font-size: 1px;
+      line-height: 1rem;
+      height: 1rem;
+      background-color: transparent;
+    }
+    header a, footer a {
       text-decoration: none;
       color: inherit;
       background-color: var(--color-main);
@@ -76,54 +142,87 @@
     }
 
     footer {
+      display: flex;
+      padding: 0.125rem;
+      color: #fff;
       text-align: center;
+      font-size: 0.625rem;
+    }
+    footer .social {
+      display: flex;
+    }
+    footer .social a {
+      display: inline-block;
+      margin: 0 0.125rem;
+      width: 1rem;
+      height: 1rem;
+      background-color: #fff;
+      border-radius: 50%;
     }
     footer .social span {
       display: none;
     }
 
-main>pre {
-  margin-left: 0;
-  margin-right: 0;
-}
-pre {
-  padding: 1rem;
-  overflow:auto;
-  background-color: #333;
-  color: #eee;
-}
+    h1,h2,h3,h4,h5,h6{
+      font-family: var(--font-name-heading);
+      font-weight: 200;
+    }
 
-code {
- 
-}
+    main>pre {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    pre {
+      padding: 1rem;
+      overflow:auto;
+      background-color: #333;
+      color: #eee;
+    }
 
-pre, code {
-  font-family: var(--font-name-code);
-  font-size: 0.75rem;
-  line-height: 180%;
-}
+    code {
+     
+    }
 
+    pre, code {
+      font-family: var(--font-name-code);
+      font-size: 0.75rem;
+      line-height: 180%;
+    }
 
+    p>code {
+      padding: 0 0.5rem
+        padding: 0 0.5rem
+      padding: 0 0.5rem
+      padding: 0 0.5rem;
+      background-color: #eee;
+      border-radius: 1rem;
+    }
   </style>
   <link
     href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap"
     rel="stylesheet"
   />
-  <link src="./style/screen.css"></link>
+  <link src="./style/screen.scss"></link>
 </head>
 <body>
   <header>
-    <h1>Ron Valstar - frontend developer</h1>
+    <h1>
+      <div class="logo"></div>
+      <div class="name">Ron Valstar</div>
+      <div class="what">frontend developer</div>
+    </h1>
     <nav>
-      <a href="#">about</a>
-      <a href="#">projects</a>
-      <a href="#">blog</a>
-      <a href="#">contact</a>
-      <a href="#">cv</a>
+      <a href="#" class="logo"></a>
+      <a href="#"><span>about</span></a>
+      <a href="#"><span>projects</span></a>
+      <a href="#"><span>blog</span></a>
+      <a href="#"><span>contact</span></a>
+      <a href="#"><span>cv</span></a>
     </nav>
   </header>
   <main>
-    <div>
+  </main>
+  <div>
     <add-todo></add-todo>
     <todo-list>
       <to-do>dingen leren</to-do>
@@ -132,32 +231,13 @@ pre, code {
     </todo-list>
     <hr />
     <todo-list />
-    </div>
-
-    <h3>foo</h3>
-    <p>Consectetur consequuntur aliquam incidunt ad minima laudantium Blanditiis tempora porro doloremque rem ut Obcaecati repudiandae commodi voluptatum provident culpa Possimus temporibus cumque deleniti consequuntur ut adipisci eius, odio corporis Commodi</p>
-    <p>Dolor earum autem iure sunt beatae facere Debitis veniam ipsam inventore itaque nostrum Laboriosam maxime ex iure ad vel? Sint magnam corrupti excepturi ipsa cumque hic, nemo deserunt! Dolorum suscipit?</p>
-    <pre><code data-language="javascript">
-function reorderFrom(arr, from) {  
-    const a1 = arr.slice(0, from).reverse()  
-    const a2 = arr.slice(from);  
-    const reordered = []  
-    for (let i = 0, l = Math.max(a1.length, a2.length); i &lt; l; i++) {  
-        const v2 = a2[i]  
-        v2 !== undefined && reordered.push(v2)  
-        const v1 = a1[i]  
-        v1 !== undefined && reordered.push(v1)  
-    }  
-    return reordered  
-}
-    </code></pre>
-  </main>
+  </div>
   <footer>
     <nav class="social">
-      <a href="#"><span>Stackoverflow</span></a>
-      <a href="#"><span>LinkedIn</span></a>
-      <a href="#"><span>Twitter</span></a>  
-      <a href="#"><span>Ello</span></a>
+      <a href="#" class"rv-stackoverflow"><span>Stackoverflow</span></a>
+      <a href="#" class"rv-linkedin"><span>LinkedIn</span></a>
+      <a href="#" class"rv-twitter"><span>Twitter</span></a>  
+      <a href="#" class"rv-ello"><span>Ello</span></a>
     </nav>
     <span></span>
     &copy; Ron Valstar

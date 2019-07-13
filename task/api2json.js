@@ -4,13 +4,14 @@ const {read,save} = utils
 
 const baseApiUri = 'https://ronvalstar.nl/api'
 const saveEndpoints = [
-  '/rv/v1/fortpolio'
+  /*'/rv/v1/fortpolio'
   ,'/wp/v2/types'
   ,'/wp/v2/taxonomies'
   ,'/wp/v2/categories'
   ,'/wp/v2/tags'
   ,'/wp/v2/posts'
-  ,'/wp/v2/pages'
+  ,'/wp/v2/pages'*/
+  '/wp/v2/posts/3366'
 ]
 
 console.log('ff')
@@ -30,5 +31,5 @@ fetch(baseApiUri)
 saveEndpoints.forEach(p=>{
   fetch(baseApiUri+p)
     .then(rs=>rs.json())
-    .then(s=>save(`./temp/${p.substr(7)}.json`,JSON.stringify(s,null,2)))
+    .then(s=>save(`./temp/${p.substr(7).replace(/[^a-z0-9]/g,'')}.json`,JSON.stringify(s,null,2)))
 })

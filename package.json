@@ -1,6 +1,6 @@
 {
   "name": "web-components-redux",
-  "version": "0.4.24",
+  "version": "0.4.25",
   "description": "a test",
   "scripts": {
     "start": "run-p build build:watch serve",
