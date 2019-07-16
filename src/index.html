@@ -132,30 +132,39 @@
       color: inherit;
       background-color: var(--color-main);
     }
-    main {
+    main, aside {
       padding: 1rem 0;
       background-color: #fff;
     }
-    main>*{
+    main>*, aside>* {
       margin-left: 1rem;
       margin-right: 1rem;
     }
 
     footer {
       display: flex;
-      padding: 0.125rem;
+      align-content: stretch;
+      width: 100vw;
+      white-space: nowrap;
       color: #fff;
       text-align: center;
+      vertical-align: middle;
       font-size: 0.625rem;
+      line-height: 2rem;
     }
+    footer>* {
+      padding: 0.125rem;
+    }
+    /*footer, footer * {box-shadow:0 0 0 1px green;}*/
     footer .social {
       display: flex;
     }
     footer .social a {
       display: inline-block;
       margin: 0 0.125rem;
-      width: 1rem;
-      height: 1rem;
+      width: 2rem;
+      height: 2rem;
+      font-size: 2rem;
       background-color: #fff;
       border-radius: 50%;
     }
@@ -163,14 +172,32 @@
       display: none;
     }
 
-    h1,h2,h3,h4,h5,h6{
+    .search {
+      ddisplay: flex;
+      background-color: #fff;
+      box-shadow: 0.125rem 0.25rem 0.25rem rgba(0,0,0,0.3) inset;
+    }
+    .search>* { background: transparent; }
+    .search input { flex: 1 1 33px; }
+    .search button { flex: 0 0 1rem; }
+    .search input { width: 4rem; }
+
+    h1,h2,h3,h4,h5,h6 {
       font-family: var(--font-name-heading);
       font-weight: 200;
+    }
+
+    button, input {
+      border: 0;
+      background: #fff;
+      vertical-align: middle;
+      line-height: 100%;
     }
 
     main>pre {
       margin-left: 0;
       margin-right: 0;
+      max-height: 100vh;
     }
     pre {
       padding: 1rem;
@@ -178,11 +205,6 @@
       background-color: #333;
       color: #eee;
     }
-
-    code {
-     
-    }
-
     pre, code {
       font-family: var(--font-name-code);
       font-size: 0.75rem;
@@ -190,11 +212,8 @@
     }
 
     p>code {
-      padding: 0 0.5rem
-        padding: 0 0.5rem
-      padding: 0 0.5rem
       padding: 0 0.5rem;
-      background-color: #eee;
+      background-color: #ddd;
       border-radius: 1rem;
     }
   </style>
@@ -202,7 +221,7 @@
     href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap"
     rel="stylesheet"
   />
-  <link src="./style/screen.scss"></link>
+  <link src="./style/screen.css"></link>
 </head>
 <body>
   <header>
@@ -220,9 +239,8 @@
       <a href="#"><span>cv</span></a>
     </nav>
   </header>
-  <main>
-  </main>
-  <div>
+  <main></main>
+  <aside>
     <add-todo></add-todo>
     <todo-list>
       <to-do>dingen leren</to-do>
@@ -231,16 +249,21 @@
     </todo-list>
     <hr />
     <todo-list />
-  </div>
+  </aside>
   <footer>
     <nav class="social">
-      <a href="#" class"rv-stackoverflow"><span>Stackoverflow</span></a>
-      <a href="#" class"rv-linkedin"><span>LinkedIn</span></a>
-      <a href="#" class"rv-twitter"><span>Twitter</span></a>  
-      <a href="#" class"rv-ello"><span>Ello</span></a>
+      <a href="#" class="rv-stack-overflow"><span>Stackoverflow</span></a>
+      <a href="#" class="rv-linkedin"><span>LinkedIn</span></a>
+      <a href="#" class="rv-twitter"><span>Twitter</span></a>  
+      <a href="#" class="rv-ello"><span>Ello</span></a>
     </nav>
-    <span></span>
-    &copy; Ron Valstar
+    <span>&copy; Ron Valstar</span>
+    <div>
+      <div class="search">
+        <input>
+        <button class="rv-search"></button>
+      </div>
+    </div>
   </footer>
   <script src="./js/index.js"></script>
 </body>

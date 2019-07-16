@@ -20,6 +20,13 @@ module.exports = env => {
     ,devtool: 'source-map'
     ,module: {
       rules: [{
+          test: /\.less$/
+          ,use: [
+              'style-loader' // creates style nodes from JS strings
+              ,'css-loader' // translates CSS into CommonJS
+              ,'less-loader' // compiles Less to CSS, using Node Sass by default
+          ]
+      },{
           test: /\.scss$/
           ,use: [
               'style-loader' // creates style nodes from JS strings
@@ -43,7 +50,7 @@ module.exports = env => {
             }
         }]
       },{
-        test: /\.(png|jp(e*)g|svg)$/
+        test: /\.(eot|woff|woff2|ttf|png|jp(e*)g|svg)$/
         ,use: [{
             loader: 'url-loader'
             ,options: {
@@ -66,7 +73,7 @@ module.exports = env => {
 
           //,{ from: 'src/style/screen.css', to: './style/'}
           ,{ from: 'src/data', to: './data' }
-          ,{ from: 'src/static', to: './static' }
+          //,{ from: 'src/static', to: './static' }
           ,{ from: 'temp/*.json', to: './data', flatten:true }
           /*{ from: `${isProduction?'temp':'src'}/index.html`, to: './'}
           ,{ from: 'src/.htaccess', to: './'}
