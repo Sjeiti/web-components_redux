@@ -14,7 +14,7 @@ component.create('data-search',class extends BaseComponent{
     this._element.appendChild(BaseComponent.getFragment(`
       <label for="${options.id}">${options.label}</label>
       <input type="search" placeholder="${options.placeholder}" id="${options.id}" />
-      <input type="button" class="rv-search" value="${options.submit}" />
+      <button class="rv-search">${options.submit}</button>
     `))
   }
 })
