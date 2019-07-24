@@ -231,12 +231,6 @@
     main>h1 {
       margin-top: 0;
     }
-    main>h1+time{
-      position: relative;;
-      top: 0.5rem;
-      right: 0.5rem;
-      transform: translate(90deg);
-    }
 
     main>pre {
       margin-left: 0;
@@ -272,19 +266,19 @@
   <link src="./style/screen.css"></link>
 </head>
 <body>
-  <header>
+  <header data-header>
     <h1>
       <div class="logo"></div>
       <div class="name">Ron Valstar</div>
       <div class="what">frontend developer</div>
     </h1>
     <nav>
-      <a href="#"><i class="logo"></i></a>
-      <a href="#"><span>about</span></a>
-      <a href="#"><span>projects</span></a>
-      <a href="#" class="current"><span>blog</span></a>
-      <a href="#"><span>contact</span></a>
-      <a href="#"><span>cv</span></a>
+      <a href="/"><i class="logo"></i></a>
+      <a href="/about"><span>about</span></a>
+      <a href="/projects"><span>projects</span></a>
+      <a href="/blog" class="current"><span>blog</span></a>
+      <a href="/contact"><span>contact</span></a>
+      <a href="/cv"><span>cv</span></a>
     </nav>
   </header>
   <main>
