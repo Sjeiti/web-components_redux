@@ -1,5 +1,6 @@
 import {component, BaseComponent} from '../Component'
-import { scroll } from '../signal'
+import {scroll} from '../signal/scroll'
+import {routeChange} from '../router'
 
 component.create('data-header',class extends BaseComponent{
 
@@ -18,9 +19,11 @@ component.create('data-header',class extends BaseComponent{
       header.style.backgroundPosition = `0 ${h/2}px`
     })
 
-    console.log(location.pathname)
-    const allCurrent = document.querySelectorAll(`a[href="${location.pathname}"]`)
-    Array.from(allCurrent).forEach(elm=>elm.classList.add('current'))
+    routeChange.add(location=>{
+      console.log(location.pathname)
+      const allCurrent = this._element.querySelectorAll(`a[href="${location.pathname}"]`)
+      Array.from(allCurrent).forEach(elm=>elm.classList.add('current'))
+    })
 
   }
 })

@@ -10,11 +10,10 @@ export function appendChild(parent, nodeName='div', content, attrs){
 }
 
 export function stringToElement(s){
-  const tmpl = document.createElement('template')
-  tmpl.innerHTML = `<div>${s}</div>`
+  const tmpl = document.createElement('div')
+  tmpl.innerHTML = s
   const frag = document.createDocumentFragment()
-  const {content} = tmpl
-  while (content.children) frag.appendChild(content.firstChild)
+  while (tmpl.children.length) frag.appendChild(tmpl.firstChild)
   return frag
 }
 

@@ -1,5 +1,10 @@
 import { expand } from '@emmetio/expand-abbreviation'
 import {parentQuerySelector} from './utils/html'
+import {signal} from './signal'
+
+export const routeChange = signal()
+
+requestAnimationFrame(()=>routeChange.dispatch(Object.assign({},location)))
 
 const view = document.querySelector('main')
 
