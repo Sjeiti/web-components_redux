@@ -17,5 +17,10 @@ component.create('data-header',class extends BaseComponent{
       //
       header.style.backgroundPosition = `0 ${h/2}px`
     })
+
+    console.log(location.pathname)
+    const allCurrent = document.querySelectorAll(`a[href="${location.pathname}"]`)
+    Array.from(allCurrent).forEach(elm=>elm.classList.add('current'))
+
   }
 })

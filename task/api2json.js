@@ -8,15 +8,15 @@ const saveEndpoints = [
   ,'/wp/v2/types'
   ,'/wp/v2/taxonomies'
   ,'/wp/v2/categories'
-  ,'/wp/v2/tags'
-  ,'/wp/v2/posts'
-  ,'/wp/v2/pages'*/
-  '/wp/v2/posts/3366'
+  ,'/wp/v2/tags'*/
+  '/wp/v2/posts'
+  ,'/wp/v2/pages'
+  //,'/wp/v2/posts/3366'
 ]
 
 console.log('ff')
 
-fetch(baseApiUri)
+false&&fetch(baseApiUri)
   .then(rs=>rs.json())
   .then(api=>{
     const routes = Object.keys(api.routes)
@@ -31,5 +31,13 @@ fetch(baseApiUri)
 saveEndpoints.forEach(p=>{
   fetch(baseApiUri+p)
     .then(rs=>rs.json())
-    .then(s=>save(`./temp/${p.substr(7).replace(/[^a-z0-9]/g,'')}.json`,JSON.stringify(s,null,2)))
+    .then(s=>{
+      s.forEach(item=>{
+        const {id,type,slug} = item
+        //console.log({id,type,slug})
+        save(`./temp/${type}_${slug}.json`,JSON.stringify(item,null,2))
+      })
+      //console.log(s)
+      //save(`./temp/${p.substr(7).replace(/[^a-z0-9]/g,'')}.json`,JSON.stringify(s,null,2)))
+    })
 })

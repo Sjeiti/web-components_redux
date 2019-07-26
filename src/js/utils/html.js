@@ -18,8 +18,8 @@ export function stringToElement(s){
   return frag
 }
 
-export function parentQuerySelector(elm,query,inClusive=false){
+export function parentQuerySelector(elm,query,inclusive=false){
   const closest = elm.closest(query)
-  const isChild = closest.contains(elm)
+  const isChild = closest&&closest.contains(elm)
   return isChild&&closest||inclusive&&elm.matches(query)
 }
