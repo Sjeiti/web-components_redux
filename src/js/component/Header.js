@@ -1,3 +1,4 @@
+import experiments from 'Experiments/src/experiment'
 import {component, BaseComponent} from '../Component'
 import {scroll} from '../signal/scroll'
 import {routeChange} from '../router'
@@ -24,6 +25,10 @@ component.create('data-header',class extends BaseComponent{
       const allCurrent = this._element.querySelectorAll(`a[href="${location.pathname}"]`)
       Array.from(allCurrent).forEach(elm=>elm.classList.add('current'))
     })
+
+    for (let name in experiments){
+      console.log(name)
+    }
 
   }
 })
