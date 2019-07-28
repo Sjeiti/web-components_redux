@@ -22,3 +22,7 @@ export function parentQuerySelector(elm,query,inclusive=false){
   const isChild = closest&&closest.contains(elm)
   return isChild&&closest||inclusive&&elm.matches(query)
 }
+
+export function clean(elm){
+  while (elm.firstChild) elm.removeChild(elm.firstChild)
+}

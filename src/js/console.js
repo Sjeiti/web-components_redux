@@ -19,3 +19,4 @@ for (let s in console){
     console[s] = append;
   }
 }
+console.clear = ()=>code.innerHTML=''

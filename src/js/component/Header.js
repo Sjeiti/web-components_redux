@@ -13,6 +13,8 @@ component.create('data-header',class extends BaseComponent{
 
     const stuck = signal()
 
+    let experiment
+
     const header = this._element//document.querySelector('header')
     let lastScrollTop = 0
     let lastHeaderTop = 0
@@ -32,25 +34,33 @@ component.create('data-header',class extends BaseComponent{
       header.style.backgroundPosition = `0 ${h/2}px`
     })
 
-    routeChange.add(location=>{
-      console.log('pathname',location.pathname)
-      const allCurrent = this._element.querySelectorAll(`a[href="${location.pathname}"]`)
-      Array.from(allCurrent).forEach(elm=>elm.classList.add('current'))
+    routeChange.add((name,oldName)=>{
+      console.log('Header:routeChange',name)
+      const current = 'current'
+      const seldo = (selector,fn)=>Array.from(this._element.querySelectorAll(selector)).forEach(fn)
+      seldo('.'+current,elm=>elm.classList.remove(current))
+      seldo(`a[href="/${name}"]`,elm=>elm.classList.add(current))
+      //
+      
     })
 
-    stuck.add(console.log.bind(console,'stuck'))
+    const experimentWrapper = document.createElement('div')
+    experimentWrapper.classList.add('experiment-wrapper')
+    this._element.appendChild(experimentWrapper)
+    stuck.add(is=>experiment?.pause(is))
+    function experimentation(name,oldName){
+      if (!name&&experiment){
+        experiment.exit()
+        experiment = null
+      } else if (name&&!experiment){
+        experiment = experiments.starzoom
+        experiment.init(experimentWrapper)
+      }
+    }
 
     if (location.pathname==='/'){
       for (let name in experiments){
         console.log(name)
-      }
-      const experimentWrapper = document.createElement('div')
-      experimentWrapper.classList.add('experiment-wrapper')
-      this._element.appendChild(experimentWrapper)
-      const xp = experiments.starzoom.init(experimentWrapper)
-      stuck.add(is=>is?xp.play():xp.pause())
-      for (let prop in xp){
-        console.log('\t',prop)
       }
     }
   }

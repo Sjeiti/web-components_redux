@@ -1,5 +1,5 @@
 import {add} from '../router'
-import {stringToElement} from '../utils/html'
+import {stringToElement,clean} from '../utils/html'
 
 add(
   'home'
@@ -9,7 +9,9 @@ add(
   ,(view,route)=>
     fetch(`./data/page_${route}.json`)
       .then(rs=>rs.json())
-      .then(post=>
-        view.appendChild(stringToElement(post.content.rendered))
-      )
+      .then(page=>{
+        clean(view)
+        view.appendChild(stringToElement(page.content.rendered))
+        return page
+      })
 )
