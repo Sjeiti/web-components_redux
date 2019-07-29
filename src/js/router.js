@@ -14,7 +14,7 @@ const routes = {}
 window.addEventListener('popstate',onPopstate)
 
 let url = ''//location.href
-;['click','keydown','mouseup','touchend']
+;['click']//,'keydown','mouseup','touchend']
   .forEach(event=>document.body.addEventListener(event, onUserInput, true))
 
 function onPopstate(e){
@@ -32,10 +32,10 @@ function onUserInput(e){
     open(anchor.getAttribute('href'))
   } else {
     requestAnimationFrame(()=>{
-      url!==location.href&&console.log('url changed');
-      url!==location.href&&open(location.href)
-      url = location.href
-    });
+      const {href} = location
+      url!==href&&console.log('url changed',url,href)
+      //url!==href&&open(href)
+    })
   }
 }
 
@@ -55,25 +55,21 @@ export function open(uri){
   const oldName = getName(getPathname(oldUrl))
   url = getURL(pathname)
   const name = getName(pathname)
-  console.log('\tname',name)
+  console.log('\tname',name,'empty',name==='',/^\s*$/.test(name))
   let routeResolve = defaultRouteResolve
-  if (name==='') {
-    routeResolve = routes.home
-  }else{
-    for (let route in routes) {
-      if (route===name) {
-        routeResolve = routes[route]
-        console.log('\troute found')
-        break
-      }
+  for (let route in routes) {
+    if (route===name) {
+      routeResolve = routes[route]
+      console.log('\troute found')
+      break
     }
   }
-  console.log(url,oldUrl,!!routeResolve)
+  console.log('\turl',url,'old',oldUrl,!!routeResolve)
   if (url!==oldUrl){
-    routeResolve(view,name)
+    routeResolve(view,name||'home')
       .then(page=>{
         console.clear()
-        console.log('slug',page.slug)
+        console.log('resolved',JSON.stringify(page))
         history.pushState({},page.title.rendered||page.title,page.slug)
         routeChange.dispatch(name,oldName)
       })

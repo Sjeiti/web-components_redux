@@ -11,10 +11,11 @@ const saveEndpoints = [
   ,'/wp/v2/tags'*/
   '/wp/v2/posts'
   ,'/wp/v2/pages'
+  ,'/rv/v1/fortpolio'
   //,'/wp/v2/posts/3366'
 ]
 
-console.log('ff')
+const paging = '?per_page=99&page=3' 
 
 false&&fetch(baseApiUri)
   .then(rs=>rs.json())
@@ -29,15 +30,25 @@ false&&fetch(baseApiUri)
   })
 
 saveEndpoints.forEach(p=>{
-  fetch(baseApiUri+p)
+  fetch(baseApiUri+p+paging)
     .then(rs=>rs.json())
     .then(s=>{
       s.forEach(item=>{
         const {id,type,slug} = item
-        //console.log({id,type,slug})
         save(`./temp/${type}_${slug}.json`,JSON.stringify(item,null,2))
       })
-      //console.log(s)
-      //save(`./temp/${p.substr(7).replace(/[^a-z0-9]/g,'')}.json`,JSON.stringify(s,null,2)))
     })
 })
+
+// posts-list
+false&&fetch(baseApiUri+'/wp/v2/posts?per_page=99')
+  .then(rs=>rs.json())
+  .then(posts=>posts.map(post=>({
+    id: post.id
+    ,date: post.date
+    ,title: post.title.rendered
+    ,slug: post.slug
+  })))
+  .then(posts=>{
+    save('temp/posts-list.json',JSON.stringify(posts))
+  })

@@ -6,10 +6,12 @@ add('blog',(view,route)=>
     fetch('./data/posts-list.json')
       .then(rs=>rs.json())
       .then(posts=>{
+        console.log('blogfetched',JSON.stringify(posts[0]),posts)
         clean(view)
         view.insertAdjacentHTML('beforeend', expand(`ul.unstyled.blog>(${posts.map(
-          post=>`(li>a[href="/${post.slug}"]{${post.title}})`
+          post=>`(li>a[href="/${post.slug}"]>(time{${post.date.split('T').shift()}}+{${post.title}}))`
         ).join('+')})`))
         return {title:'blog',slug:'blog'}
       })
 )
+//post=>`(li>a[href="/${post.slug}"]>(time{${post.date.split('T').shift()}}+h3{${post.title}})`
