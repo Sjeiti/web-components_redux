@@ -7,7 +7,7 @@ Prism.languages.insertBefore('javascript', 'comment', {
   'jsdoc': /\/\*\*\s*\n([^\*]*(\*[^\/])?)*\*\//
 })
 
-const codeSelector = 'pre>code[data-language]'
+const codeSelector = 'pre>code'
 
 export function prismToRoot(root){
   Array.from(root.querySelectorAll(codeSelector))
