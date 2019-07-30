@@ -12,5 +12,6 @@ import '../components/Header'
 import '../components/FilterList'*/
 import './component/Search'
 import './component/Header'
+import './component/Code'
 
 component.initialise()

@@ -12,23 +12,24 @@ class Component {
   _eventInitialised = this._eventNames.map(()=>false)
 
   /**
-   * Create a component by binding it to an attribute
-   * @param {string} componentAttribute
+   * Create a component by binding it to a specific selector
+   * @param {string} componentSelector
    * @param {function} componentClass
    */
-  create(componentAttribute, componentClass){
-    if (this._componentClasses[componentAttribute]) {
-      throw new Error(`Component with attribute '${componentAttribute}' already initialised`)
+  create(componentSelector, componentClass){
+    if (this._componentClasses[componentSelector]) {
+      throw new Error(`Component with selector '${componentSelector}' already initialised`)
     } else {
-      this._componentClasses[componentAttribute] = componentClass
+      this._componentClasses[componentSelector] = componentClass
     }
   }
 
   /**
    * Initialise manually so clear the next tick timeout
+   * @param {HTMLElement} rootElement
    */
-  initialise(){
-    this._initialise(this._body)
+  initialise(rootElement){
+    this._initialise(rootElement||this._body)
     this._initEvents()
     this._dispatchOnInit()
   }
@@ -51,7 +52,7 @@ class Component {
    */
   _initialise(rootElement,childOfAttr){
     for (const attr in this._componentClasses) {
-      const elements = Array.from(rootElement.querySelectorAll(`[${attr}]`))
+      const elements = Array.from(rootElement.querySelectorAll(attr))
       const isRecursive = attr===childOfAttr&&elements.length
       if (isRecursive) {
         console.warn('Recursive component detected',rootElement,attr)
@@ -70,9 +71,8 @@ class Component {
    */
   _initElement(element,attr){
     if (!this.of(element)) {
-      const options = element.getAttribute(attr)
       const componentClass = this._componentClasses[attr]
-      const instance = new componentClass(element,options)
+      const instance = new componentClass(element)
       this._initialise(instance.element,attr)
       this._eventHandlers.forEach((handler,i)=>{
         instance[handler]&&this._eventInstances[i].push(instance)
@@ -137,11 +137,9 @@ class BaseComponent {
   /**
    * Initialise element with options
    * @param {HTMLElement} element
-   * @param {string} options
    */
-  constructor(element,options){
+  constructor(element){
     this._element = element
-    this._options = this._parseOptions(options)
   }
 
   /**

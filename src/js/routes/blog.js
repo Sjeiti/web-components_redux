@@ -1,6 +1,8 @@
-import { expand } from '@emmetio/expand-abbreviation'
+import {expand} from '@emmetio/expand-abbreviation'
 import {add} from '../router'
 import {clean} from '../utils/html'
+import {nextTick} from '../utils'
+import {prismToRoot} from '../utils/prism'
 
 add('blog',(view,route)=>
     fetch('./data/posts-list.json')
@@ -11,7 +13,7 @@ add('blog',(view,route)=>
         view.insertAdjacentHTML('beforeend', expand(`ul.unstyled.blog>(${posts.map(
           post=>`(li>a[href="/${post.slug}"]>(time{${post.date.split('T').shift()}}+{${post.title}}))`
         ).join('+')})`))
+        nextTick(()=>prismToRoot(view))
         return {title:'blog',slug:'blog'}
       })
 )
-//post=>`(li>a[href="/${post.slug}"]>(time{${post.date.split('T').shift()}}+h3{${post.title}})`

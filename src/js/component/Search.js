@@ -1,15 +1,15 @@
 import {component, BaseComponent} from '../Component'
 
-component.create('data-search',class extends BaseComponent{
+component.create('[data-search]',class extends BaseComponent{
 
   constructor(...args){
     super(...args)
-    const options = this._options = Object.assign({
+    const options = Object.assign({
       id: 'search'+Date.now(),
       label: 'Search',
       placeholder: 'keyword',
       submit: 'Search'
-    },this._options)
+    },this._parseOptions(this._element.getAttribute('data-search')))
     this._element.classList.add('search')
     this._element.appendChild(BaseComponent.getFragment(`
       <label for="${options.id}">${options.label}</label>

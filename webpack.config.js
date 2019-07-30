@@ -73,8 +73,9 @@ module.exports = env => {
 
           //,{ from: 'src/style/screen.css', to: './style/'}
           ,{ from: 'src/data', to: './data' }
-          //,{ from: 'src/static', to: './static' }
+          ,{ from: 'src/static', to: './static' }
           ,{ from: 'temp/*.json', to: './data', flatten:true }
+          ,{ from: 'node_modules/Experiments/src/experiment/', to: './static/experiment' }
           /*{ from: `${isProduction?'temp':'src'}/index.html`, to: './'}
           ,{ from: 'src/.htaccess', to: './'}
           ,{ from: 'src/_redirects', to: './'}

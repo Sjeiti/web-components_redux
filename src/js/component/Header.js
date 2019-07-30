@@ -6,7 +6,7 @@ import {signal} from '../signal'
 import {routeChange} from '../router'
 import {appendChild} from '../utils/html'
 
-component.create('data-header',class extends BaseComponent{
+component.create('[data-header]',class extends BaseComponent{
 
   constructor(...args){
     super(...args)
@@ -34,12 +34,13 @@ component.create('data-header',class extends BaseComponent{
       header.style.backgroundPosition = `0 ${h/2}px`
     })
 
-    routeChange.add((name,oldName)=>{
+    routeChange.add((name,page,oldName)=>{
       console.log('Header:routeChange',name)
       const current = 'current'
       const seldo = (selector,fn)=>Array.from(this._element.querySelectorAll(selector)).forEach(fn)
+      const select = page.type==='post'?'blog':name
       seldo('.'+current,elm=>elm.classList.remove(current))
-      seldo(`a[href="/${name}"]`,elm=>elm.classList.add(current))
+      seldo(`a[href="/${select}"]`,elm=>elm.classList.add(current))
       //
       
     })

@@ -1,4 +1,6 @@
+@import 'variables';
 @import 'iconfont';
+@import 'syntax';
 
 footer .social a {
   color: #fff;
@@ -18,10 +20,6 @@ ul.blog {
     margin-bottom: 1rem;
   }
   a { text-decoration: none; }
-  time {
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
 }
 
 .experiment-wrapper {
@@ -33,9 +31,11 @@ ul.blog {
   height: 100%;
 }
 
-time.blog {
-  //position: relative;
-  //top: 0.5rem;
-  //right: 0.5rem;
-  transform: rotate(90deg);
+time {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+img, svg {
+  max-width: 100%;
 }
