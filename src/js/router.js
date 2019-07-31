@@ -76,7 +76,8 @@ export function open(uri){
       .then(page=>{
         console.clear()
         console.log('resolved',JSON.stringify(page))
-        history.pushState({},page.title.rendered||page.title,page.slug)
+        const title = page.title.rendered||page.title
+        history.pushState({},title,page.slug)
         routeChange.dispatch(name,page,oldName)
         component.initialise(view)
       })

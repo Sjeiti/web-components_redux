@@ -3,6 +3,7 @@ import '../style/screen.less'
 
 import { appendChild, stringToElement } from './utils/html'
 import './routes'
+import './head'
 
 import {component} from './Component'
 /*import '../components/Ul'
