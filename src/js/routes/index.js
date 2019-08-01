@@ -1,6 +1,6 @@
 import './blog'
 import './pages'
+import './projects'
 import './posts'
 import {open} from '../router'
-
-open(window.location.href)
+open(location.href)

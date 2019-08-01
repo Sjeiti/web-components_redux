@@ -10,7 +10,7 @@ component.create('[data-header]',class extends BaseComponent{
 
   constructor(...args){
     super(...args)
-
+    
     const stuck = signal()
 
     let experiment
@@ -41,8 +41,6 @@ component.create('[data-header]',class extends BaseComponent{
       const select = page.type==='post'?'blog':name
       seldo('.'+current,elm=>elm.classList.remove(current))
       seldo(`a[href="/${select}"]`,elm=>elm.classList.add(current))
-      //
-      
     })
 
     const experimentWrapper = document.createElement('div')

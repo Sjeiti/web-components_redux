@@ -16,9 +16,10 @@ window.addEventListener('popstate',onPopstate)
 
 let animFrame
 let url = ''//location.href
-;['click','keydown','mouseup','touchend']
+
+/*;['click','keydown','mouseup','touchend']
   .forEach(event=>document.body.addEventListener(event, onUserInput, true))
-document.body.addEventListener('click', onClick, true)
+document.body.addEventListener('click', onClick, true)*/
 
 function onPopstate(){
   open(location.href)
@@ -37,13 +38,13 @@ function onClick(e){
   }
 }
 
-function onUserInput(e){
+/*function onUserInput(e){
   animFrame = requestAnimationFrame(()=>{
     const {href} = location
     url!==href&&console.log('url changed',url,href)
     // todo: url!==href&&open(href)
   })
-}
+}*/
 
 export function setDefault(fn){
   defaultRouteResolve = fn
@@ -77,9 +78,11 @@ export function open(uri){
         console.clear()
         console.log('resolved',JSON.stringify(page))
         const title = page.title.rendered||page.title
-        history.pushState({},title,page.slug)
+        const pathname = page.slug==='home'?'':page.slug
+        history.pushState({},title,pathname)
         routeChange.dispatch(name,page,oldName)
         component.initialise(view)
+        document.body.setAttribute('data-pathname',pathname)
       })
   }
 }

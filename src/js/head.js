@@ -10,10 +10,11 @@ routeChange.add((slug,page)=>{
   const title = page.title.rendered||page.title
   //
   document.title = title+(title?' - ':'')+siteName
-  //
+  /*
   setSelector('link[rel="canonical"]','href',page.link)
   setSelector('meta[name="description"]','content',page.description)
   setSelector('meta[property="og:locale"]','content','en_US')
+  */
 })
 
 function setSelector(selector,key,value){
