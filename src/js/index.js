@@ -2,7 +2,7 @@ import './console'
 import '../style/screen.less'
 
 import { appendChild, stringToElement } from './utils/html'
-import './routes'
+import './views'
 import './head'
 
 import {component} from './Component'

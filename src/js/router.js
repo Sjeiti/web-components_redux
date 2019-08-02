@@ -1,11 +1,8 @@
-import { expand } from '@emmetio/expand-abbreviation'
 import {parentQuerySelector} from './utils/html'
 import {signal} from './signal'
 import {component} from './Component'
 
 export const routeChange = signal()
-
-//requestAnimationFrame(()=>open(location.pathname))
 
 const view = document.querySelector('main')
 
@@ -14,12 +11,9 @@ const routes = {}
 
 window.addEventListener('popstate',onPopstate)
 
-let animFrame
 let url = ''//location.href
 
-/*;['click','keydown','mouseup','touchend']
-  .forEach(event=>document.body.addEventListener(event, onUserInput, true))
-document.body.addEventListener('click', onClick, true)*/
+document.body.addEventListener('click', onClick, true)
 
 function onPopstate(){
   open(location.href)
@@ -34,17 +28,8 @@ function onClick(e){
   if (anchor) {
     e.preventDefault()
     open(anchor.getAttribute('href'))
-    cancelAnimationFrame(animFrame)
   }
 }
-
-/*function onUserInput(e){
-  animFrame = requestAnimationFrame(()=>{
-    const {href} = location
-    url!==href&&console.log('url changed',url,href)
-    // todo: url!==href&&open(href)
-  })
-}*/
 
 export function setDefault(fn){
   defaultRouteResolve = fn
@@ -63,11 +48,15 @@ export function open(uri){
   url = getURL(pathname)
   const name = getName(pathname)
   console.log('\tname',name,'empty',name==='',/^\s*$/.test(name))
+  let routeKey = ''
   let routeResolve = defaultRouteResolve
+  let routeMatch
   for (let route in routes) {
-    if (route===name) {
+    const routeReg = new RegExp(`^${route.replace(/:[a-z0-9-]+/g,'([a-z0-9-]+)')}$`)
+    routeMatch = name.match(routeReg)
+    if (routeMatch) {
+      routeKey = route
       routeResolve = routes[route]
-      console.log('\troute found')
       break
     }
   }
@@ -77,6 +66,8 @@ export function open(uri){
       .then(page=>{
         console.clear()
         console.log('resolved',JSON.stringify(page))
+        console.log('\t',routeKey)
+        console.log('\t',routeMatch)
         const title = page.title.rendered||page.title
         const pathname = page.slug==='home'?'':page.slug
         history.pushState({},title,pathname)

@@ -25,7 +25,7 @@ glob(dir+'fortpolio_*.json',{})
 .then(files=>files.map(file=>{
   const {
     slug
-    ,title:{rendered:title}
+    ,title
     ,excerpt
     ,'meta-datefrom':dateFrom
     ,'meta-dateto':dateTo

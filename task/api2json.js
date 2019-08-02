@@ -12,6 +12,9 @@ const saveEndpoints = [
   '/wp/v2/posts'
   ,'/wp/v2/pages'
   ,'/rv/v1/fortpolio'
+
+  ,'/rv/v1/taxonomies'
+
   //,'/wp/v2/posts/3366'
 ]
 
