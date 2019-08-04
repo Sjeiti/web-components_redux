@@ -38,7 +38,7 @@ component.create('[data-header]',class extends BaseComponent{
       console.log('Header:routeChange',name)
       const current = 'current'
       const seldo = (selector,fn)=>Array.from(this._element.querySelectorAll(selector)).forEach(fn)
-      const select = page.type==='post'?'blog':name
+      const select = page.parentSlug||name
       seldo('.'+current,elm=>elm.classList.remove(current))
       seldo(`a[href="/${select}"]`,elm=>elm.classList.add(current))
     })

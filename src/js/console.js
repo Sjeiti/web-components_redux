@@ -20,3 +20,7 @@ for (let s in console){
   }
 }
 console.clear = ()=>code.innerHTML=''
+
+code.addEventListener('dblclick',console.clear.bind(console))
+
+Promise.onerror = console.error

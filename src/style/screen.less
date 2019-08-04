@@ -48,7 +48,7 @@ ul.unstyled, .list-unstyled {
   }
 }
 
-[data-pathname=projects] {
+[data-pathname^=project] {
   main { padding: 0; }
 }
 ul.projects {
@@ -106,6 +106,9 @@ ul.project-category {
     box-shadow: 0 0 0 1px white;
     text-decoration: none;
     color: white;
+    &.curent{
+      background-color: black;
+    }
   }
 }
 

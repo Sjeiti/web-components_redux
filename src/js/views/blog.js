@@ -11,6 +11,6 @@ add('blog',(view,route)=>
         view.insertAdjacentHTML('beforeend', expand(`ul.unstyled.blog>(${posts.map(
           post=>`(li>a[href="/${post.slug}"]>(time{${post.date.split('T').shift()}}+{${post.title}}))`
         ).join('+')})`))
-        return {title:'blog',slug:'blog'}
+        return {title:'blog'}
       })
 )

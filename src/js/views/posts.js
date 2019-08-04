@@ -15,5 +15,5 @@ setDefault((view,route)=>fetch(`./data/post_${route}.json`)
         +post.content.rendered
       ))
       nextTick(()=>prismToRoot(view))
-      return post
+      return Object.assign(post,{parentSlug:'blog'})
     }))

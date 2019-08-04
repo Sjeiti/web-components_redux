@@ -12,6 +12,7 @@ const routes = {}
 window.addEventListener('popstate',onPopstate)
 
 let url = ''//location.href
+let currentRouteResolve
 
 document.body.addEventListener('click', onClick, true)
 
@@ -50,32 +51,48 @@ export function open(uri){
   console.log('\tname',name,'empty',name==='',/^\s*$/.test(name))
   let routeKey = ''
   let routeResolve = defaultRouteResolve
-  let routeMatch
+  let routeParams
   for (let route in routes) {
-    const routeReg = new RegExp(`^${route.replace(/:[a-z0-9-]+/g,'([a-z0-9-]+)')}$`)
-    routeMatch = name.match(routeReg)
-    if (routeMatch) {
+    const params = getParams(route,pathname)
+    if(params){
       routeKey = route
+      routeParams = params
       routeResolve = routes[route]
       break
     }
   }
   console.log('\turl',url,'old',oldUrl,!!routeResolve)
   if (url!==oldUrl){
-    routeResolve(view,name||'home')
+    console.log('\tresolving',name)
+    routeResolve(view,name||'home',routeParams)
       .then(page=>{
-        console.clear()
-        console.log('resolved',JSON.stringify(page))
-        console.log('\t',routeKey)
-        console.log('\t',routeMatch)
+        //console.clear()
+        console.log('\tresolved',JSON.stringify(page))
+        console.log('\troute',routeKey)
+        console.log('\tpathname',name)
+        console.log('\tparams',JSON.stringify(routeParams))
         const title = page.title.rendered||page.title
-        const pathname = page.slug==='home'?'':page.slug
-        history.pushState({},title,pathname)
+        history.pushState({},title,(name[0]==='/'?'':'/')+name)
+        console.log('\tpushState',title,name)
         routeChange.dispatch(name,page,oldName)
         component.initialise(view)
-        document.body.setAttribute('data-pathname',pathname)
+        document.body.setAttribute('data-pathname',name)
       })
+      .catch(console.error)
   }
+}
+
+function getParams(route,pathname){
+  const routeReg = new RegExp(`^${route.replace(/:[a-z0-9-]+/g,'([a-z0-9-]+)')}$`)
+  const routeMatch = pathname.replace(/^\//,'').match(routeReg)
+  return routeMatch&&route
+    .split('/')
+    .reduce((acc,k,i)=>{
+      if(k[0]===':'){
+        acc[k.substr(1)] = routeMatch[i]
+      }
+      return acc
+    },{})
 }
 
 function getName(pathname){
