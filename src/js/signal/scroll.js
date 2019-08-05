@@ -3,7 +3,7 @@
  * @type Signal
  */
 import {signal} from './index'
-import {getScrollX,getScrollY} from '../utils/utils'
+import {getScrollX,getScrollY} from '../utils'
 
 export const scroll = signal()
 const doc = document

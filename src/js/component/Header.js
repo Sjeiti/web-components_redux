@@ -4,13 +4,14 @@ import {component, BaseComponent} from '../Component'
 import {scroll} from '../signal/scroll'
 import {signal} from '../signal'
 import {routeChange} from '../router'
-import {appendChild} from '../utils/html'
+import {appendChild,selectEach} from '../utils/html'
 
 component.create('[data-header]',class extends BaseComponent{
 
   constructor(...args){
     super(...args)
     
+    const seldo = selectEach.bind(null,this._element)
     const stuck = signal()
 
     let experiment
@@ -37,7 +38,6 @@ component.create('[data-header]',class extends BaseComponent{
     routeChange.add((name,page,oldName)=>{
       console.log('Header:routeChange',name)
       const current = 'current'
-      const seldo = (selector,fn)=>Array.from(this._element.querySelectorAll(selector)).forEach(fn)
       const select = page.parentSlug||name
       seldo('.'+current,elm=>elm.classList.remove(current))
       seldo(`a[href="/${select}"]`,elm=>elm.classList.add(current))

@@ -3,7 +3,7 @@ import {add} from '../router'
 import {clean} from '../utils/html'
 
 add('blog',(view,route)=>
-    fetch('./data/posts-list.json')
+    fetch('/data/posts-list.json')
       .then(rs=>rs.json())
       .then(posts=>{
         console.log('blogfetched',JSON.stringify(posts[0]),posts)

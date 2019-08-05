@@ -26,3 +26,7 @@ export function parentQuerySelector(elm,query,inclusive=false){
 export function clean(elm){
   while (elm.firstChild) elm.removeChild(elm.firstChild)
 }
+
+export function selectEach(root,selector,fn){
+  return Array.from(root.querySelectorAll(selector)).forEach(fn)
+}

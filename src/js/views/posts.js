@@ -4,7 +4,7 @@ import {setDefault} from '../router.js'
 import {nextTick} from '../utils'
 import {prismToRoot} from '../utils/prism'
 
-setDefault((view,route)=>fetch(`./data/post_${route}.json`)
+setDefault((view,route)=>fetch(`/data/post_${route}.json`)
     .then(rs=>rs.json())
     .then(post=>{
       clean(view)

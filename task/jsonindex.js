@@ -27,12 +27,14 @@ glob(dir+'fortpolio_*.json',{})
     slug
     ,title
     ,excerpt
+    ,content
     ,'meta-datefrom':dateFrom
     ,'meta-dateto':dateTo
     ,'meta-featured':featured
     ,'meta-incv':inCv // on||''
     ,'meta-inportfolio':inPortfolio
     ,image
+    ,media
     ,tags
     ,categories
   } = JSON.parse(file)
@@ -40,12 +42,14 @@ glob(dir+'fortpolio_*.json',{})
     slug
     ,title
     ,excerpt
+    ,content
     ,dateFrom
     ,dateTo
     ,featured: featured==='on'
     ,inCv: inCv==='on'
     ,inPortfolio: inPortfolio==='on'
     ,thumbnail: image&&image.thumbnail
+    ,images: media.map(m=>m.medium_large)
     ,tags
     ,categories
   }

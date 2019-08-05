@@ -8,7 +8,6 @@ module.exports = env => {
   // const isDevelopment = !!env&&env.development
   // const isStaging = !!env&&env.staging
   const mode = isProduction?'production':'development'
-  console.log('env',mode)
 
   return {
     mode
