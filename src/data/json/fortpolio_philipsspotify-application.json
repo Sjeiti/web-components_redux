@@ -1,0 +1,50 @@
+{
+  "ID": 2298,
+  "slug": "philipsspotify-application",
+  "title": "Philips/Spotify application",
+  "excerpt": "",
+  "content": "<p>Development of a Spotify application where users can send their favorite music to be added to the Philips Spotify playlist.</p>\n",
+  "uri": "https://ronvalstar.nl/projects/philipsspotify-application",
+  "type": "fortpolio",
+  "order": 31,
+  "tags": [
+    65,
+    274,
+    165,
+    167
+  ],
+  "categories": [
+    273,
+    241,
+    239
+  ],
+  "clients": [
+    224
+  ],
+  "collaboration": [],
+  "prizes": [],
+  "media": [
+    {
+      "thumbnail": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png-150x150.jpg",
+      "medium": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png-300x175.jpg",
+      "medium_large": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png.jpg",
+      "large": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png-1024x597.jpg",
+      "full": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png.jpg"
+    }
+  ],
+  "meta-cvcopy": "",
+  "meta-datefrom": "2013-09-01",
+  "meta-dateto": "2013-10-01",
+  "meta-featured": "",
+  "meta-incv": "on",
+  "meta-inportfolio": "",
+  "meta-note": "",
+  "meta-uri": "",
+  "image": {
+    "thumbnail": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png-150x150.jpg",
+    "medium": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png-300x175.jpg",
+    "medium_large": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png.jpg",
+    "large": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png-1024x597.jpg",
+    "full": "https://ronvalstar.nl/wordpress/wp-content/uploads/PhilipsSpotify.png.jpg"
+  }
+}

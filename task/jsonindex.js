@@ -5,7 +5,7 @@ const glob = promisify(require('glob'))
 const utils = require('./util/utils.js')
 const {read,save} = utils
 
-const dir = './temp/'
+const dir = './src/data/json/'
 const types = ['post','fortpolio']
 
 // posts
@@ -16,12 +16,13 @@ glob(dir+'post_*.json',{})
   return {date,slug,title}
 }))
 .then(files=>files.sort((a,b)=>new Date(a.date)<new Date(b.date)?1:-1))
-.then(files=>save('temp/posts-list.json',JSON.stringify(files)))
+.then(files=>save(dir+'posts-list.json',JSON.stringify(files)))
 .catch(console.warn.bind(console,'fuuuu'))
 
+// portfolio
 glob(dir+'fortpolio_*.json',{})
 .then(files=>Promise.all(files.map(read)))
-.then(files=>files.sort((a,b)=>a.order<b.order?1:-1))
+.then(files=>files.sort((a,b)=>a.order<b.order?-1:1))
 .then(files=>files.map(file=>{
   const {
     slug
@@ -54,5 +55,5 @@ glob(dir+'fortpolio_*.json',{})
     ,categories
   }
 }))
-.then(files=>save('temp/fortpolio-list.json',JSON.stringify(files)))
+.then(files=>save(dir+'fortpolio-list.json',JSON.stringify(files)))
 .catch(console.warn.bind(console,'fuuuu'))

@@ -41,6 +41,7 @@ component.create('[data-header]',class extends BaseComponent{
       const select = page.parentSlug||name
       seldo('.'+current,elm=>elm.classList.remove(current))
       seldo(`a[href="/${select}"]`,elm=>elm.classList.add(current))
+      experimentation(name,oldName)
     })
 
     const experimentWrapper = document.createElement('div')
@@ -48,10 +49,15 @@ component.create('[data-header]',class extends BaseComponent{
     this._element.appendChild(experimentWrapper)
     stuck.add(is=>experiment?.pause(is))
     function experimentation(name,oldName){
-      if (!name&&experiment){
+      console.log('\txp',name,!!experiment)
+      if (/^experiment-.+/.test(name)){
+        experiment&&experiment.exit()
+        experiment = experiments[name.replace(/^experiment-/,'')]
+        experiment&&experiment.init(experimentWrapper)
+      }else if (name&&experiment){
         experiment.exit()
         experiment = null
-      } else if (name&&!experiment){
+      } else if (!name&&!experiment){
         experiment = experiments.starzoom
         experiment.init(experimentWrapper)
       }

@@ -1,0 +1,92 @@
+{
+  "ID": 2058,
+  "slug": "budlight-sensation",
+  "title": "Budlight Sensation",
+  "excerpt": "",
+  "content": "<p>Implementation of Sensation event into the existing Canadian Budlight website. The event was spread into a number of phases which had to be deployed at specific dates.</p>\n",
+  "uri": "https://ronvalstar.nl/projects/budlight-sensation",
+  "type": "fortpolio",
+  "order": 14,
+  "tags": [
+    46,
+    65,
+    274,
+    89,
+    162,
+    163,
+    168
+  ],
+  "categories": [
+    273,
+    241,
+    239,
+    238,
+    278,
+    277,
+    276
+  ],
+  "clients": [
+    183
+  ],
+  "collaboration": [],
+  "prizes": [],
+  "media": [
+    {
+      "thumbnail": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1-150x150.jpg",
+      "medium": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1-300x170.jpg",
+      "medium_large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1.jpg",
+      "large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1.jpg",
+      "full": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1.jpg"
+    },
+    {
+      "thumbnail": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_2-150x150.jpg",
+      "medium": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_2-300x170.jpg",
+      "medium_large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_2.jpg",
+      "large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_2.jpg",
+      "full": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_2.jpg"
+    },
+    {
+      "thumbnail": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_3-150x150.jpg",
+      "medium": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_3-300x170.jpg",
+      "medium_large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_3.jpg",
+      "large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_3.jpg",
+      "full": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_3.jpg"
+    },
+    {
+      "thumbnail": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_4-150x150.jpg",
+      "medium": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_4-300x170.jpg",
+      "medium_large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_4.jpg",
+      "large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_4.jpg",
+      "full": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_4.jpg"
+    },
+    {
+      "thumbnail": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_5-150x150.jpg",
+      "medium": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_5-300x170.jpg",
+      "medium_large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_5.jpg",
+      "large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_5.jpg",
+      "full": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_5.jpg"
+    },
+    {
+      "thumbnail": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_6-150x150.jpg",
+      "medium": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_6-300x170.jpg",
+      "medium_large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_6.jpg",
+      "large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_6.jpg",
+      "full": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_6.jpg"
+    }
+  ],
+  "meta-cvcopy": "",
+  "meta-datefrom": "2013-03-01",
+  "meta-dateto": "2013-05-01",
+  "meta-featured": "",
+  "meta-incv": "on",
+  "meta-inportfolio": "on",
+  "meta-note": "",
+  "meta-uri": "",
+  "image": {
+    "thumbnail": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1-150x150.jpg",
+    "medium": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1-300x170.jpg",
+    "medium_large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1.jpg",
+    "large": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1.jpg",
+    "full": "https://ronvalstar.nl/wordpress/wp-content/uploads/budlight_1.jpg"
+  }
+}

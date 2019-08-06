@@ -15,7 +15,7 @@ add(
     const {project:projectSlug,category} = params
     let title = 'projects'
     let parentSlug
-    return Promise.all(data.map(n=>fetch(`/data/${n}.json`).then(rs=>rs.json())))
+    return Promise.all(data.map(n=>fetch(`/data/json/${n}.json`).then(rs=>rs.json())))
       .then(([projects,taxonomies])=>{
         console.log('\tloaded')
         const categories = taxonomies['fortpolio_category']
