@@ -5,7 +5,7 @@ import {nextTick} from '../utils'
 import {prismToRoot} from '../utils/prism'
 
 setDefault((view,route)=>fetch(`/data/json/post_${route}.json`)
-    .then(rs=>rs.json())
+    .then(rs=>rs.json(),resolve404.bind(null,view,route))
     .then(post=>{
       clean(view)
       const time = post.date.split('T').shift()
@@ -16,4 +16,15 @@ setDefault((view,route)=>fetch(`/data/json/post_${route}.json`)
       ))
       nextTick(()=>prismToRoot(view))
       return Object.assign(post,{parentSlug:'blog'})
-    }))
+    },resolve404.bind(null,view,route)))
+
+function resolve404(view,route,error){
+  console.error(error)
+  clean(view)
+  
+  view.appendChild(stringToElement(
+    expand('h1.page404{404}')
+  ))
+
+  return {title:'404'}
+}

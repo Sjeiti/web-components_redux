@@ -2,9 +2,12 @@
 node_modules
 dist
 temp
+src/data/search
 
 *.bat
 *.sw*
+
+report.*
 
 # local env files
 .env

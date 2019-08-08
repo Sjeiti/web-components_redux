@@ -1,3 +1,5 @@
+import {expand} from '@emmetio/expand-abbreviation'
+
 /**
  * A component factory
  */
@@ -148,6 +150,21 @@ class BaseComponent {
    */
   get element(){
     return this._element
+  }
+
+  _append(zen,target){
+    const parentNode = target||this._element
+    const abbr = zen.replace(/\r|\n|\s{2,}/g,'')
+    console.log('a',abbr)
+    const a = parentNode.insertAdjacentHTML('beforeend', expand(abbr))
+  }
+
+  _select(selector){
+    return this?._element.querySelector(selector)
+  }
+
+  _selectAll(selector){
+    return this?._element.querySelectorAll(selector)
   }
 
   static getFragment(str){
