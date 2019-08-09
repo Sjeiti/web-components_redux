@@ -318,6 +318,7 @@ const common = [
 const basePath = './src/data/search/'
 
 glob('src/data/json/@(post|page|fortpolio)_*.json')
+  //.then(console.log)
   //.then(files=>files.slice(0,5))
   .then(files=>Promise.all(files.map(read)))
   .then(files=>files.map(r=>JSON.parse(r)))
@@ -329,11 +330,9 @@ glob('src/data/json/@(post|page|fortpolio)_*.json')
 function createIndex(files){
   const words = files
     .map(file=>{
-      const {
-        title:{rendered:title}
-        ,content:{rendered:content}
-        ,excerpt:{rendered:excerpt}
-      } = file
+      const title = file.title.rendered||file.title
+      const content = file.content.rendered||file.content
+      const excerpt = file.excerpt.rendered||file.excerpt
       return [title,content,excerpt]
         .join(' ')
         .replace(/<\/?[^>]+(>|$)/g,' ')
@@ -360,11 +359,9 @@ function mapIndex(files,index){
     .forEach(word=>{
       const slugs = files
         .filter(file=>{
-          const {
-            title:{rendered:title}
-            ,content:{rendered:content}
-            ,excerpt:{rendered:excerpt}
-          } = file
+          const title = file.title.rendered||file.title
+          const content = file.content.rendered||file.content
+          const excerpt = file.excerpt.rendered||file.excerpt
           const string = [title,content,excerpt]
             .join(' ')
             .replace(/<\/?[^>]+(>|$)/g,' ')

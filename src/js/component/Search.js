@@ -1,7 +1,13 @@
 import {expand} from '@emmetio/expand-abbreviation'
 import {component, BaseComponent} from '../Component'
+import {signal} from '../signal'
+
+export const change = signal()
+export const search = signal()
 
 component.create('[data-search]',class extends BaseComponent{
+
+  _input
 
   constructor(...args){
     super(...args)
@@ -13,19 +19,20 @@ component.create('[data-search]',class extends BaseComponent{
       ,autoSuggest: false
     },this._parseOptions(this._element.getAttribute('data-search')))
     this._element.classList.add('search')
-    /*this._element.appendChild(BaseComponent.getFragment(`
-      <label for="${options.id}">${options.label}</label>
-      <input type="search" placeholder="${options.placeholder}" id="${options.id}" />
-      <button class="rv-search">${options.submit}</button>
-    `))*/
     this._append(`
       label[for=${options.id}]{${options.label}}
       +input#${options.id}[name=${options.id} type=search placeholder="${options.placeholder}"]
       +button.rv-search{${options.submit}}
     `)
+    //
+    this._input = this._select('input')
+    this._input.addEventListener('keyup',this._onKeyUp.bind(this))
+    const button = this._select('button')
+    button.addEventListener('click',this._onSubmit.bind(this,this._input))
+    //
+    change.add(this._onChange.bind(this,this._input))
+    //
     if(options.autoSuggest){
-      const input = this._select('input')
-      input.addEventListener('keyup',this._onKeyUp.bind(this))
       //
       this._append(`ul.unstyled.autosuggest`)
       //
@@ -33,15 +40,35 @@ component.create('[data-search]',class extends BaseComponent{
         .then(res=>res.json(),console.warn)
         .then(words=>this._words = words)
         .catch(console.log.bind(console,'bloody'))
+      //
+      change.add(this._suggest.bind(this))
     }
   }
 
+  set value(s){
+    this._input.value = s
+  }
+
   _onKeyUp(e){
-    console.log(!!this._words)
+    const {target:{value},keyCode} = e
+    this._lastValue!==value&&change.dispatch(value)
+    this._lastValue = value
+    keyCode===13&&this._onSubmit({value})
+  }
+
+  _onChange(input,value){
+    input.value!==value&&(input.value = value)
+  }
+
+  _onSubmit(input){
+    const {value} = input
+    console.log('searchDispatch',value)
+    search.dispatch(value)
+  }
+
+  _suggest(value){
     if (this._words){
-      const {target:{value}} = e
       const suggest = this._words.filter(word=>word.includes(value))
-      console.log(value,suggest.length)
     }
   }
 })

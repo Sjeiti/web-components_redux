@@ -19,6 +19,16 @@ glob(dir+'post_*.json',{})
 .then(files=>save(dir+'posts-list.json',JSON.stringify(files)))
 .catch(console.warn.bind(console,'fuuuu'))
 
+// pages
+glob(dir+'page_*.json',{})
+.then(files=>Promise.all(files.map(read)))
+.then(files=>files.map(file=>{
+  const {slug,title:{rendered:title}} = JSON.parse(file)
+  return {slug,title}
+}))
+.then(files=>save(dir+'pages-list.json',JSON.stringify(files)))
+.catch(console.warn.bind(console,'fuuuu'))
+
 // portfolio
 glob(dir+'fortpolio_*.json',{})
 .then(files=>Promise.all(files.map(read)))

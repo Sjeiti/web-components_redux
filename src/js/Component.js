@@ -167,14 +167,6 @@ class BaseComponent {
     return this?._element.querySelectorAll(selector)
   }
 
-  static getFragment(str){
-    const fragment = document.createDocumentFragment()
-    const div = document.createElement('div')
-    div.innerHTML = str
-    Array.from(div.childNodes).forEach(elm=>fragment.appendChild(elm))
-    return fragment
-  }
-
   /**
    * Try parsing the options to an object
    * @param {string} options

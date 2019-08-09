@@ -28,7 +28,8 @@ function onClick(e){
   //console.log(anchor&&'####################################')
   if (anchor) {
     e.preventDefault()
-    open(anchor.getAttribute('href'))
+    // todo ?s= replace
+    open(anchor.getAttribute('href').replace(/search\?s=/,'search/'))
   }
 }
 
@@ -38,6 +39,7 @@ export function setDefault(fn){
 
 export function add(...names){//,callback
   const callback = names.pop()
+  console.log('router.add',names)
   names.forEach(name=>routes[name]=callback)
 }
 
@@ -83,7 +85,7 @@ export function open(uri){
 }
 
 function getParams(route,pathname){
-  const routeReg = new RegExp(`^${route.replace(/:[a-z0-9-]+/g,'([a-z0-9-]+)')}$`)
+  const routeReg = new RegExp(`^${route.replace(/:[a-zA-Z0-9-]+/g,'([a-zA-Z0-9-]+)')}$`)
   const routeMatch = pathname.replace(/^\//,'').match(routeReg)
   return routeMatch&&route
     .split('/')
