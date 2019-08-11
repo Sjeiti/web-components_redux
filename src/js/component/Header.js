@@ -8,65 +8,73 @@ import {appendChild,selectEach} from '../utils/html'
 
 component.create('[data-header]',class extends BaseComponent{
 
+  _seldo 
+  _experiment
+  _stuck = signal()
+  _lastScrollTop = 0
+  _lastHeaderTop = 0
+
   constructor(...args){
     super(...args)
     
-    const seldo = selectEach.bind(null,this._element)
-    const stuck = signal()
+    this._seldo = selectEach.bind(null,this._element)
 
-    let experiment
+    scroll.add(this._onScroll.bind(this))
+    routeChange.add(this._onRouteChange.bind(this))
 
+    this._initExperiments()
+  }
+
+  _initExperiments(){
+    this._experimentWrapper = document.createElement('div')
+    this._experimentWrapper.classList.add('experiment-wrapper')
+    this._element.appendChild(this._experimentWrapper)
+    this._stuck.add(is=>this._experiment?.pause(is))
+    //location.pathname==='/'&&for (let name in experiments)console.log(name)
+  }
+
+  setImage(src){
+  }
+
+  _onScroll(e,w,h){
     const header = this._element//document.querySelector('header')
-    let lastScrollTop = 0
-    let lastHeaderTop = 0
-    scroll.add((e,w,h)=>{
-      const headerTop = header.getBoundingClientRect().top
-      if (lastScrollTop!==h){
-        const isStuck = h>0&&headerTop===lastHeaderTop
-        const wasStuck = header.classList.contains('stuck')
-        if (wasStuck!==isStuck){
-          header.classList.toggle('stuck',isStuck)
-          stuck.dispatch(isStuck)
-        }
-      }
-      lastHeaderTop = headerTop
-      lastScrollTop = h
-      //
-      header.style.backgroundPosition = `0 ${h/2}px`
-    })
-
-    routeChange.add((name,page,oldName)=>{
-      console.log('Header:routeChange',name)
-      const current = 'current'
-      const select = page.parentSlug||name
-      seldo('.'+current,elm=>elm.classList.remove(current))
-      seldo(`a[href="/${select}"]`,elm=>elm.classList.add(current))
-      experimentation(name,oldName)
-    })
-
-    const experimentWrapper = document.createElement('div')
-    experimentWrapper.classList.add('experiment-wrapper')
-    this._element.appendChild(experimentWrapper)
-    stuck.add(is=>experiment?.pause(is))
-    function experimentation(name,oldName){
-      console.log('\txp',name,!!experiment)
-      if (/^experiment-.+/.test(name)){
-        experiment&&experiment.exit()
-        experiment = experiments[name.replace(/^experiment-/,'')]
-        experiment&&experiment.init(experimentWrapper)
-      }else if (name&&experiment){
-        experiment.exit()
-        experiment = null
-      } else if (!name&&!experiment){
-        experiment = experiments.starzoom
-        experiment.init(experimentWrapper)
+    const headerTop = header.getBoundingClientRect().top
+    if (this._lastScrollTop!==h){
+      const isStuck = h>0&&headerTop===this._lastHeaderTop
+      const wasStuck = header.classList.contains('stuck')
+      if (wasStuck!==isStuck){
+        header.classList.toggle('stuck',isStuck)
+        this._stuck.dispatch(isStuck)
       }
     }
+    this._lastHeaderTop = headerTop
+    this._lastScrollTop = h
+    //
+    header.style.backgroundPosition = `0 ${h/2}px`
+  }
 
-    if (location.pathname==='/'){
-      for (let name in experiments){
-        console.log(name)
-      }
+  _onRouteChange(name,page,oldName){
+    console.log('Header:routeChange',name)
+    const current = 'current'
+    const select = page.parentSlug||name
+    this._seldo('.'+current,elm=>elm.classList.remove(current))
+    this._seldo(`a[href="/${select}"]`,elm=>elm.classList.add(current))
+    this._setExperiment(name,oldName)
+  }
+  
+  _setExperiment(name){
+    console.log('\txp',name,!!this._experiment)
+    if (/^experiment-.+/.test(name)){
+      this._experiment&&this._experiment.exit()
+      this._experiment = experiments[name.replace(/^experiment-/,'')]
+      this._experiment&&this._experiment.init(this._experimentWrapper)
+    }else if (name&&this._experiment){
+      this._experiment.exit()
+      this._experiment = null
+    } else if (!name&&!this._experiment){
+      this._experiment = Object.values(experiments).sort(()=>Math.random()<0.5?1:-1).pop()
+      this._experiment.init(this._experimentWrapper)
     }
   }
+
 })

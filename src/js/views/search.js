@@ -40,7 +40,7 @@ add(
           ,submit:''
           ,placeholder:'search'
           ,autoSuggest:true
-        }"]+ul.unstyled.result+.no-result.hidden{No results for '${query}'.}`
+        }"]+ul.unstyled.page-lis.page-list.result+.no-result.hidden{No results for '${query}'.}`
       ))
     }
     const searchElm = existingSearch||qs('[data-search]')

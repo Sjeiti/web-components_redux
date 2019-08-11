@@ -39,6 +39,27 @@ ul.unstyled, .list-unstyled {
   }
 }
 
+
+  ul.page-list {
+    //text-align: center;
+    margin-top: 0;
+    li {
+      display: block;
+      margin-bottom: 1rem;
+    }
+    @colorLink: #5AABE1;
+    @colorLinkBg: lighten(#5AABE1,30%);
+    a {
+      color:  darken(#5AABE1,20%);
+      //color: white;
+      //font-weight: 600;;
+      background-color: @colorLinkBg;
+      text-decoration: none;
+      box-shadow: -1rem 0 0 @colorLinkBg, 0.5rem 0 0 @colorLinkBg;
+    }
+  }
+
+
 [data-pathname=contact] {
   main {
     padding-top: 15vh;
@@ -126,7 +147,7 @@ ul.project-category {
     content: '';
     display: block;
     width: 100vw;
-    height: 33vh;
+    height: 45vh;
     clear: both;
     background: #f04 linear-gradient(#f04,black);
   }
@@ -137,6 +158,15 @@ ul.project-category {
   h2 {
     font-weight: 400;
     color: #f04;
+  }
+  .date {
+    padding-top: 0.5rem;
+    display: inline-block;
+    float: right;
+    color: #f04;
+    &-from, &-to {
+      display: block;
+    }
   }
   >img{
     display: block;

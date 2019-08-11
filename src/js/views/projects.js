@@ -52,14 +52,20 @@ add(
           console.log('\tprojectSlug',projectSlug)
           const currentProject = projects.filter(p=>p.slug===projectSlug).pop()
           title = currentProject.title
-          const {content,images} = currentProject
+          const {
+            content
+            ,images
+            ,dateFrom
+            ,dateTo
+          } = currentProject
           parentSlug = 'projects'
           ;(existingProjects||qs('.projects')).insertAdjacentHTML('beforebegin', expand(
-            'div.project>('
-            +`h2{${title}}`
+            'div.project>'
+            +`(.date>time.date-from{${dateFrom.replace(/-\d\d$/,'')}}`
+            +`+time.date-to{${dateTo.replace(/-\d\d$/,'')}})`
+            +`+h2{${title}}`
             +`+{${content}}`
             +`+${images.map(m=>`img[src="${m}"]`).join('+')}`
-            +')'
           ))
           selectEach(qs('.project'),'img',img=>{
             img.addEventListener('load',e=>{

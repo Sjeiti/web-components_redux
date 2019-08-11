@@ -21,9 +21,11 @@ add(
         view.insertAdjacentHTML('beforeend', expand(
           `ul.unstyled.cv-projects>(${cvProjects.map(
             project=>`(li${project.categories.map(c=>`.cat-${c}`).join('')}`
-             +`>div>(`
+              +`>(.date>time.date-from{${project.dateFrom.replace(/-\d\d$/,'')}}`
+              +`+time.date-to{${project.dateTo.replace(/-\d\d$/,'')}})`
               +`h3{${project.title}}`
-             +`)`
+              +`+div{${project.inCv} /project/${project.slug}}`
+              +`+{${project.excerpt}}`
             +`)`
           ).join('+')})`
         ))
