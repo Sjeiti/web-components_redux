@@ -159,15 +159,6 @@ ul.project-category {
     font-weight: 400;
     color: #f04;
   }
-  .date {
-    padding-top: 0.5rem;
-    display: inline-block;
-    float: right;
-    color: #f04;
-    &-from, &-to {
-      display: block;
-    }
-  }
   >img{
     display: block;
     width: 100vw;
@@ -178,6 +169,38 @@ ul.project-category {
       width: 50vw;
       float: left;
       box-shadow: -1px 0 0 #f04, 1px 0 0 #f04;
+    }
+  }
+}
+
+.date {
+  padding-top: 0.5rem;
+  display: inline-block;
+  float: right;
+  color: #f04;
+  &-from, &-to {
+    display: block;
+  }
+}
+
+[data-pathname^=cv] {}
+.cv-projects {
+  margin: 0;
+  h3 { margin-top: 0; }
+  h3, h3>a { color: #f04; }
+  >li {
+    padding: 1rem;
+    box-shadow: 0 -1px 0 #f04;
+  }
+  .tags {
+    padding: 0;
+    list-style: none;
+    font-size: 0.75rem;
+    color: #666;
+    font-size: 0.75rem;
+    color: #666;
+    li {
+      display: inline-block;
     }
   }
 }

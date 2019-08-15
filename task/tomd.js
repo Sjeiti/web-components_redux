@@ -26,6 +26,12 @@ read(dir+'taxonomies.json')
 )
 .then(taxonomies=>{
   //.then(console.log)
+  //
+  glob(dir+'@(page|fortpolio|post)_*.json')
+  //.then(a=>a.map)
+  .then(console.log)
+  //
+  //
   files.forEach(file=>{
     Promise.all([
       read(dir+file).then(JSON.parse)
@@ -33,6 +39,7 @@ read(dir+'taxonomies.json')
     ])
       .then(([page,file])=>{
         const type = file.match(/\/([^_\/]+)_[^\/]+\.json/).pop()
+        const fileName = file.split('/').pop()
         const {
           id
           ,date
@@ -89,22 +96,36 @@ read(dir+'taxonomies.json')
 
         const meta = Object.entries(metaObj)
           .map(a=>a.join(': '))
-          .join('\r\n')
+          .join(`
+`)
 
-        return `---
+        const md = generateMd(meta,title,content)
+        save('temp/'+fileName.replace(/json$/,'md'),md)
+
+        return md
+
+      })
+      //.then(o=>save('temp/'+fileName.replace(/json$/,'md'),o))
+
+      //.then(o=>(console.log(o),o))
+/*
+      .then(matter)
+      .then(o=>(console.log(o),o.content))
+      .then(marked)
+      .then(console.log)
+*/
+      .catch(console.error)
+  })
+})
+.catch(console.error)
+
+
+function generateMd(meta,title,content){
+  return `---
 ${meta}
 ---
 
 # ${title}
 
 ${turndown(content)}`
-      })
-      .then(o=>(console.log(o),o))
-      /*.then(matter)
-      .then(o=>(console.log(o),o.content))
-      .then(marked)
-      .then(console.log)*/
-      .catch(console.error)
-  })
-})
-.catch(console.error)
+}
