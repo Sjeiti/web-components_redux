@@ -52,7 +52,7 @@
     "css-properties-values": "^1.0.0",
     "del-cli": "^1.1.0",
     "eslint": "^3.19.0",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "file-loader": "^2.0.0",
     "html-loader": "^0.5.5",
     "less": "^3.9.0",
